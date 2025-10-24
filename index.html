@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Real Chow - Halloween</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Eater&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <title>HALLOWEEN NIGHT - PARTY</title>
     <style>
         * {
             margin: 0;
@@ -13,669 +12,1367 @@
         }
 
         body {
-            font-family: 'Permanent Marker', cursive;
+            font-family: 'Arial Black', sans-serif;
+            background: #000000;
+            color: #00ffff;
             overflow-x: hidden;
-            background: #0a0a0a;
-            color: #fff;
+            position: relative;
+            min-height: 100vh;
         }
 
-        /* Fondo animado con rayos */
-        .bg-animation {
+        /* Video de fondo */
+        .video-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 20% 30%, rgba(0, 100, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(100, 200, 255, 0.1) 0%, transparent 50%),
-                linear-gradient(180deg, #0a0a0a 0%, #0d1520 50%, #0a0a0a 100%);
             overflow: hidden;
+            z-index: 0;
+            opacity: 0.3;
         }
 
-        .lightning-svg {
+        .video-background::before {
+            content: '';
             position: absolute;
-            opacity: 0;
-            animation: lightningFlash 10s infinite;
-            filter: drop-shadow(0 0 15px rgba(100, 200, 255, 1)) 
-                    drop-shadow(0 0 25px rgba(150, 220, 255, 0.9))
-                    drop-shadow(0 0 35px rgba(255, 255, 255, 0.7));
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,50,100,0.5));
+            z-index: 1;
+        }
+
+        /* Efecto de glitch en el fondo */
+        .glitch-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: 
+                repeating-linear-gradient(0deg, rgba(0,255,255,0.03) 0px, transparent 2px, transparent 4px),
+                repeating-linear-gradient(90deg, rgba(0,255,255,0.03) 0px, transparent 2px, transparent 4px);
+            pointer-events: none;
+            z-index: 1;
+            animation: scanlines 8s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Control de sonido */
+        .sound-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,255,255,0.2);
+            border: 2px solid #00ffff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(0,255,255,0.6);
+        }
+
+        .sound-control:hover {
+            background: rgba(0,255,255,0.4);
+            transform: scale(1.1);
+        }
+
+        /* Círculos de neón */
+        .neon-circle {
+            position: fixed;
+            border: 3px solid #00ffff;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px #00ffff,
+                inset 0 0 20px rgba(0,255,255,0.3);
+            animation: pulse-circle 3s infinite;
             pointer-events: none;
         }
 
-        @keyframes lightningFlash {
-            0%, 100% { opacity: 0; }
-            0.5% { opacity: 0; }
-            1% { opacity: 1; }
-            1.5% { opacity: 0.3; }
-            2% { opacity: 1; }
-            2.5% { opacity: 0; }
-            3% { opacity: 0.9; }
-            3.5% { opacity: 0; }
-            4%, 100% { opacity: 0; }
-        }
-
-
-        .particle {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b00"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>');
-            background-size: contain;
-            opacity: 0.6;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        .bat {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23000"><path d="M12 3c-1.5 0-2.7 1.2-2.7 2.7 0 .4.1.8.3 1.1C8.4 7.3 7 8.1 5.8 9.2c-.5.5-.9 1.1-1.2 1.7-.2-.1-.5-.2-.7-.2C2.8 10.7 2 11.5 2 12.6c0 .8.5 1.5 1.2 1.8.3 1.4 1.1 2.6 2.2 3.5.3.2.7.4 1 .5-.1.3-.2.7-.2 1 0 1.5 1.2 2.7 2.7 2.7.9 0 1.7-.4 2.1-1.1.4.1.9.1 1.4.1s.9 0 1.4-.1c.5.7 1.3 1.1 2.1 1.1 1.5 0 2.7-1.2 2.7-2.7 0-.3-.1-.7-.2-1 .4-.1.7-.3 1-.5 1.1-.9 1.9-2.1 2.2-3.5.7-.3 1.2-1 1.2-1.8 0-1.1-.8-1.9-1.9-1.9-.3 0-.5.1-.7.2-.3-.6-.7-1.2-1.2-1.7-1.2-1.1-2.6-1.9-3.8-2.4.2-.3.3-.7.3-1.1C14.7 4.2 13.5 3 12 3z"/></svg>');
-            background-size: contain;
-            opacity: 0.7;
-            animation: fly 20s infinite linear;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        @keyframes fly {
-            0% { transform: translateX(-100px) translateY(0); }
-            50% { transform: translateX(calc(100vw + 100px)) translateY(-50vh); }
-            100% { transform: translateX(-100px) translateY(0); }
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .pumpkin-decoration {
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.3;
-            animation: pulse 3s infinite ease-in-out;
-        }
-
-        .pumpkin-left {
+        .circle-1 {
+            width: 300px;
+            height: 300px;
             top: 10%;
-            left: 5%;
+            left: -150px;
             animation-delay: 0s;
         }
 
-        .pumpkin-right {
-            top: 10%;
-            right: 5%;
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: -200px;
             animation-delay: 1s;
         }
 
-        .pumpkin-bottom-left {
-            bottom: 10%;
-            left: 10%;
-            animation-delay: 2s;
+        @keyframes pulse-circle {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
         }
 
-        .pumpkin-bottom-right {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: 1.5s;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.1); opacity: 0.5; }
-        }
-
-        .title-container {
-            margin-bottom: 60px;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
             position: relative;
-            z-index: 10;
+            z-index: 2;
+        }
+
+        /* Header principal */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            margin-bottom: 40px;
         }
 
         .main-title {
-            font-family: 'Nosifer', cursive;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            color: #ff6b00;
+            font-size: 5rem;
+            background: linear-gradient(90deg, #ff0066, #00ffff, #ff0066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0,255,255,0.8);
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+            animation: glitch-text 4s infinite;
+            font-style: italic;
+        }
+
+        @keyframes glitch-text {
+            0%, 90%, 100% { 
+                transform: translate(0);
+                text-shadow: 0 0 30px rgba(0,255,255,0.8);
+            }
+            91% { 
+                transform: translate(-3px, 3px);
+                text-shadow: 3px 0 0 #ff0066, -3px 0 0 #00ffff;
+            }
+            92% { 
+                transform: translate(3px, -3px);
+                text-shadow: -3px 0 0 #ff0066, 3px 0 0 #00ffff;
+            }
+        }
+
+        .hero-image {
+            width: 400px;
+            height: 400px;
+            margin: 40px auto;
+            border-radius: 50%;
+            border: 5px solid #00ffff;
+            box-shadow: 
+                0 0 50px #00ffff,
+                inset 0 0 50px rgba(0,255,255,0.3);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #001a33, #003366);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .beats-title {
+            font-size: 6rem;
+            color: #00ffff;
             text-shadow: 
-                0 0 10px #ff6b00,
-                0 0 20px #ff6b00,
-                0 0 30px #ff4500,
-                0 0 40px #ff4500,
-                0 0 70px #ff4500,
-                0 0 80px #ff4500,
-                0 0 100px #ff4500,
-                5px 5px 10px #000;
-            animation: flicker 3s infinite alternate;
-            margin-bottom: 15px;
-            letter-spacing: 5px;
+                0 0 20px #00ffff,
+                0 0 40px #00ffff,
+                0 0 60px #00ffff;
+            letter-spacing: 15px;
+            margin: 30px 0;
+            animation: neon-flicker 1.5s infinite alternate;
+        }
+
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 20px #00ffff,
+                    0 0 40px #00ffff,
+                    0 0 60px #00ffff;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .date-info {
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
+            padding: 20px;
+            margin: 30px 0;
+            border-top: 2px solid #00ffff;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        .date-info h3 {
+            font-size: 2.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+        }
+
+        /* Grid de secciones */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.4), rgba(0,20,40,0.6));
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0,255,255,0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 50px rgba(0,255,255,0.8);
+            border-color: #ff0066;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px #00ffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .item {
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #00ffff;
+            border-radius: 10px;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item:hover {
+            background: rgba(0,100,150,0.4);
+            transform: translateX(10px);
+            border-left-width: 8px;
+            border-color: #ff0066;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .item-desc {
+            color: #a0d8ff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            color: #00ff00;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00ff00;
+            display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .title-line {
-            display: block;
+        .drink-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 10px rgba(0,255,255,0.6);
         }
 
-        .subtitle {
-            font-family: 'Creepster', cursive;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            color: #9d4edd;
-            text-shadow: 
-                0 0 10px #9d4edd,
-                0 0 20px #9d4edd,
-                0 0 30px #7b2cbf,
-                3px 3px 8px #000;
-            animation: glow 2s infinite alternate;
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px rgba(255,0,102,0.8);
+            animation: badge-pulse 2s infinite;
         }
 
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow: 
-                    0 0 10px #ff6b00,
-                    0 0 20px #ff6b00,
-                    0 0 30px #ff4500,
-                    0 0 40px #ff4500,
-                    0 0 70px #ff4500,
-                    0 0 80px #ff4500,
-                    0 0 100px #ff4500,
-                    5px 5px 10px #000;
-            }
-            20%, 24%, 55% {
-                text-shadow: 
-                    0 0 5px #ff6b00,
-                    0 0 10px #ff6b00,
-                    5px 5px 10px #000;
-            }
+        @keyframes badge-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        @keyframes glow {
-            0% {
-                text-shadow: 
-                    0 0 10px #9d4edd,
-                    0 0 20px #9d4edd,
-                    0 0 30px #7b2cbf,
-                    3px 3px 8px #000;
-            }
-            100% {
-                text-shadow: 
-                    0 0 20px #9d4edd,
-                    0 0 30px #9d4edd,
-                    0 0 40px #7b2cbf,
-                    0 0 50px #7b2cbf,
-                    3px 3px 8px #000;
-            }
-        }
-
-        /* Secciones de contenido */
-        .content-sections {
-            width: 100%;
-            max-width: 1400px;
-            margin: 80px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .content-card {
-            background: linear-gradient(135deg, rgba(26, 10, 31, 0.9) 0%, rgba(45, 27, 61, 0.9) 100%);
-            border: 3px solid #ff6b00;
+        /* Sección de anfitrionas */
+        .hostess-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.6), rgba(0,20,40,0.8));
+            border: 3px solid #ff0066;
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 
-                0 0 30px rgba(255, 107, 0, 0.3),
-                0 10px 40px rgba(0, 0, 0, 0.8);
-            transition: all 0.4s ease;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(255,0,102,0.6);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .video-placeholder {
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #001a33, #003366);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0,255,255,0.4);
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0,255,255,0.8);
+            border-color: #ff0066;
+        }
+
+        /* Warning */
+        .warning {
+            background: linear-gradient(135deg, rgba(0,0,50,0.8), rgba(0,0,0,0.9));
+            border: 3px solid #00ffff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+            animation: warning-pulse 2s infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(0,255,255,0.6); }
+            50% { box-shadow: 0 0 60px rgba(255,0,102,0.8); }
+        }
+
+        .warning-title {
+            font-size: 3rem;
+            color: #ff0066;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px #ff0066;
+        }
+
+        /* CTA Button */
+        .cta {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ffff, #0099ff);
+            color: #000000;
+            font-size: 2.5rem;
+            padding: 25px 60px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 40px rgba(0,255,255,0.8);
+            transition: all 0.3s;
+            font-weight: bold;
+            animation: button-glow 2s infinite;
+        }
+
+        @keyframes button-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0,255,255,0.8); }
+            50% { box-shadow: 0 0 60px rgba(0,255,255,1), 0 0 80px rgba(255,0,102,0.6); }
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 0 60px rgba(255,0,102,1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.9);
+            border-top: 2px solid #00ffff;
+            color: #00ffff;
+            margin-top: 50px;
+        }
+
+        /* Modal para inicio */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.5s;
+        }
+
+        .welcome-content {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(0,50,100,0.8), rgba(0,0,0,0.9));
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(0,255,255,0.8);
+        }
+
+        .welcome-content h2 {
+            font-size: 3rem;
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px #00ffff;
+        }
+
+        .enter-button {
+            background: linear-gradient(135deg, #00ffff, #0099ff);
+            color: #000000;
+            font-size: 2rem;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(0,255,255,0.8);
+            transition: all 0.3s;
+        }
+
+        .enter-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(0,255,255,1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* NUEVAS SECCIONES AÑADIDAS */
+        
+        /* Sección de ofertas de combos */
+        .offers-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.8), rgba(0,20,40,0.9));
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
             position: relative;
             overflow: hidden;
         }
 
-        .content-card::before {
+        .offers-section::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b00, #9d4edd, #38b000, #ff6b00);
-            background-size: 300% 300%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            animation: gradientShift 3s ease infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%2300ffff" stroke-width="0.5" /></svg>');
+            opacity: 0.2;
+            pointer-events: none;
         }
 
-        .content-card:hover::before {
-            opacity: 0.3;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .content-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 0 50px rgba(255, 107, 0, 0.6),
-                0 20px 60px rgba(0, 0, 0, 0.9);
-            border-color: #ff8c00;
-        }
-
-        .content-card.purple {
-            border-color: #9d4edd;
-        }
-
-        .content-card.purple:hover {
-            border-color: #c77dff;
-            box-shadow: 
-                0 0 50px rgba(157, 78, 221, 0.6),
-                0 20px 60px rgba(0, 0, 0, 0.9);
-        }
-
-        .content-card.green {
-            border-color: #38b000;
-        }
-
-        .content-card.green:hover {
-            border-color: #70e000;
-            box-shadow: 
-                0 0 50px rgba(56, 176, 0, 0.6),
-                0 20px 60px rgba(0, 0, 0, 0.9);
-        }
-
-        .card-header {
-            font-family: 'Creepster', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .offers-title {
+            font-size: 3rem;
+            color: #00ffff;
             text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #00ffff;
+            position: relative;
         }
 
-        .content-card h3 {
-            color: #ff6b00;
-            text-shadow: 0 0 10px #ff6b00;
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .content-card.purple h3 {
-            color: #9d4edd;
-            text-shadow: 0 0 10px #9d4edd;
+        .offer-card {
+            background: linear-gradient(135deg, rgba(0,30,60,0.8), rgba(0,10,20,0.9));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .content-card.green h3 {
-            color: #38b000;
-            text-shadow: 0 0 10px #38b000;
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,255,255,0.6);
+            border-color: #ff0066;
         }
 
-        .content-card p, .content-card ul {
-            font-family: 'Permanent Marker', cursive;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1.8;
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .offer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
 
-        .content-card ul {
-            list-style: none;
-            padding-left: 0;
+        .offer-name {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
         }
 
-        .content-card li {
-            padding: 10px;
-            margin: 10px 0;
-            background: rgba(255, 107, 0, 0.1);
-            border-left: 4px solid #ff6b00;
-            border-radius: 5px;
+        .offer-price {
+            font-size: 2.5rem;
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00ff00;
+        }
+
+        .offer-details {
+            color: #a0d8ff;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .zone-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(255,0,102,0.8);
+        }
+
+        /* Sección de seguridad */
+        .security-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.7), rgba(0,20,40,0.9));
+            border: 3px solid #00ff00;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(0,255,0,0.6);
+            text-align: center;
+        }
+
+        .security-title {
+            font-size: 2.5rem;
+            color: #00ff00;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #00ff00;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .security-item {
+            background: rgba(0,0,0,0.6);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #00ff00;
             transition: all 0.3s;
         }
 
-        .content-card.purple li {
-            background: rgba(157, 78, 221, 0.1);
-            border-left-color: #9d4edd;
+        .security-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,255,0,0.6);
         }
 
-        .content-card.green li {
-            background: rgba(56, 176, 0, 0.1);
-            border-left-color: #38b000;
+        .security-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
-        .content-card li:hover {
-            transform: translateX(10px);
-            background: rgba(255, 107, 0, 0.2);
+        .security-item-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
         }
 
-        .content-card.purple li:hover {
-            background: rgba(157, 78, 221, 0.2);
+        .security-item-desc {
+            color: #a0d8ff;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
-        .content-card.green li:hover {
-            background: rgba(56, 176, 0, 0.2);
+        /* Sección de anfitrionas mejorada */
+        .hostess-section-improved {
+            background: linear-gradient(135deg, rgba(0,50,100,0.7), rgba(0,20,40,0.9));
+            border: 3px solid #ff0066;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(255,0,102,0.6);
         }
 
-        .highlight {
-            color: #ff6b00;
-            font-size: 1.2rem;
-            text-shadow: 0 0 5px #ff6b00;
+        .hostess-title {
+            font-size: 2.5rem;
+            color: #ff0066;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #ff0066;
         }
 
+        .hostess-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
 
-        /* Decoraciones adicionales */
-        .spider-web {
-            position: fixed;
+        .hostess-card {
+            background: linear-gradient(135deg, rgba(0,30,60,0.8), rgba(0,10,20,0.9));
+            border: 2px solid #ff0066;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .hostess-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255,0,102,0.8);
+        }
+
+        .hostess-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #001a33, #003366);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .hostess-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hostess-name {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .hostess-desc {
+            color: #a0d8ff;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Ubicación */
+        .location-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.7), rgba(0,20,40,0.9));
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+            text-align: center;
+        }
+
+        .location-title {
+            font-size: 2.5rem;
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #00ffff;
+        }
+
+        .location-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ffff, #0099ff);
+            color: #000000;
+            font-size: 1.8rem;
+            padding: 20px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0,255,255,0.8);
+            transition: all 0.3s;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .location-button:hover {
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255,0,102,0.8);
+        }
+
+        /* NUEVA SECCIÓN: DJ JHOAN */
+        .dj-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.8), rgba(0,20,40,0.9));
+            border: 3px solid #ff0066;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(255,0,102,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dj-section::before {
+            content: '';
+            position: absolute;
             top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            opacity: 0.3;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23ff0066" stroke-width="0.5" /></svg>');
+            opacity: 0.2;
             pointer-events: none;
-            z-index: 5;
         }
 
-        .ghost {
-            position: fixed;
-            font-size: 60px;
-            opacity: 0.4;
-            animation: ghostFloat 10s infinite ease-in-out;
+        .dj-title {
+            font-size: 3rem;
+            color: #ff0066;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #ff0066;
+            position: relative;
         }
 
-        @keyframes ghostFloat {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-30px) translateX(20px); }
-            50% { transform: translateY(-60px) translateX(0); }
-            75% { transform: translateY(-30px) translateX(-20px); }
+        .dj-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
         }
 
-        /* Responsive */
+        .dj-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #ff0066;
+            box-shadow: 
+                0 0 50px #ff0066,
+                inset 0 0 50px rgba(255,0,102,0.3);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #001a33, #003366);
+        }
+
+        .dj-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .dj-info {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .dj-name {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px #ffffff;
+        }
+
+        .dj-desc {
+            font-size: 1.3rem;
+            color: #a0d8ff;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .dj-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(255,0,102,0.8);
+            animation: badge-pulse 2s infinite;
+        }
+
         @media (max-width: 768px) {
-            .content-sections {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin: 40px auto;
-            }
-
-            .content-card {
-                padding: 20px;
-            }
-
-            .card-header {
-                font-size: 2rem;
-            }
-
-            .content-card p, .content-card ul {
-                font-size: 0.9rem;
-            }
-
-            .pumpkin-decoration {
-                font-size: 40px;
-            }
-
-            .main-title {
-                gap: 5px;
-            }
+            .main-title { font-size: 3rem; }
+            .beats-title { font-size: 4rem; letter-spacing: 8px; }
+            .hero-image { width: 300px; height: 300px; }
+            .cta-button { font-size: 1.8rem; padding: 20px 40px; }
+            .offers-title { font-size: 2.5rem; }
+            .security-title { font-size: 2rem; }
+            .hostess-title { font-size: 2rem; }
+            .location-title { font-size: 2rem; }
+            .location-button { font-size: 1.5rem; padding: 15px 30px; }
+            .dj-title { font-size: 2.5rem; }
+            .dj-image { width: 250px; height: 250px; }
+            .dj-name { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo animado -->
-    <div class="bg-animation" id="bgAnimation"></div>
-
-    <!-- Decoración araña -->
-    <div class="spider-web">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 0 L 200 200 M 200 0 L 0 200 M 100 0 L 100 200 M 0 100 L 200 100" stroke="#666" stroke-width="1" fill="none"/>
-            <circle cx="100" cy="100" r="50" stroke="#666" stroke-width="1" fill="none"/>
-            <circle cx="100" cy="100" r="25" stroke="#666" stroke-width="1" fill="none"/>
-        </svg>
-    </div>
-
-    <!-- Fantasma flotante -->
-    <div class="ghost" style="top: 20%; left: 10%;">👻</div>
-    <div class="ghost" style="top: 60%; right: 15%; animation-delay: 2s;">👻</div>
-
-    <!-- Sección principal -->
-    <section class="hero">
-        <!-- Calabazas decorativas -->
-        <div class="pumpkin-decoration pumpkin-left">🎃</div>
-        <div class="pumpkin-decoration pumpkin-right">🎃</div>
-        <div class="pumpkin-decoration pumpkin-bottom-left">🎃</div>
-        <div class="pumpkin-decoration pumpkin-bottom-right">🎃</div>
-
-        <div class="title-container">
-            <h1 class="main-title">
-                <span class="title-line">THE REAL</span>
-                <span class="title-line">CHOW</span>
-            </h1>
-            <h2 class="subtitle">HALLOWEEN</h2>
-        </div>
-    </section>
-
-    <!-- Secciones de Contenido -->
-    <div class="content-sections">
-        <!-- Información -->
-        <div class="content-card">
-            <h3 class="card-header">🎃 Información 🎃</h3>
-            <p>¡Bienvenidos a The Real Chow - Halloween Edition!</p>
-            <p>Este Halloween, vive una experiencia única e inolvidable en nuestro evento exclusivo. Una noche llena de terror, diversión y magia oscura donde la música, los tragos y el ambiente te transportarán a otra dimensión.</p>
-            <ul>
-                <li>🎵 DJ en vivo con música electrónica y reggaeton</li>
-                <li>🍸 Barra premium con tragos exclusivos</li>
-                <li>👯 Anfitrionas para amenizar tu noche</li>
-                <li>🎭 Decoración temática de Halloween extrema</li>
-                <li>💃 Pista de baile iluminada con efectos especiales</li>
-                <li>🎊 Concurso de disfraces con premios increíbles</li>
-            </ul>
-            <p>Evento exclusivo: Viernes 31 de Octubre - 7:00 PM </p>
-        </div>
-
-        <!-- Ofertas -->
-        <div class="content-card purple">
-            <h3 class="card-header">🕷️ Ofertas en Bebidas 🕷️</h3>
-            <p>¡Promociones que te harán gritar de emoción!</p>
-            <ul>
-                <li>🍹 Cumpleañero: Sorpresa con tu identificacion</li>
-                <li>🎭 Disfrazados: Si vienes con tu grupo de 3 a mas tienes tu descuento</li>
-                <li>🍺 Cerveza Embrujada: Sixpack de coronas</li>
-                <li>🍸 Combo Fantasma: 3 selladas premium y te llevas una sellada de ron artesanal</li>
-                <li>🥃 Whisky del Diablo: 25% OFF en selladas premium hasta las 9</li>
-                <li>🎭 Bonus Disfraz: Jarras y selladas al mejor disfraz</li>
-                <li>🔥 THE REAL CHOW: En este noche las anfitrionas se luciran<li>
-            </ul>
-            <p class="highlight">¡Promociones válidas solo el 31 de Octubre!</p>
-        </div>
-
-        <!-- Ubicación -->
-        <div class="content-card green">
-            <h3 class="card-header">👻 Ubicación del Evento 👻</h3>
-            <p>📍 Dirección: Runa Raymi, Av. Titicaca N° 157 - Al frente del Parque Rojo Puno</p>
-            <p>🎃 Fechas: Viernes 31 de Octubre 2025</p>
-            <p>🕘 Horario: 7:00 PM</p>
-            <p>📞 Reservas: +51 902 578 934</p>
-            <p>📱 WhatsApp: +51 902 578 934</p>
-            <p>💰 Entradas: S/7 </p>
-            <ul>
-                <li>🔐 Seguridad</li>
-                <li>🎫 Preventa de boletos disponible</li>
-                <li>🔞 Evento solo para mayores de 18 años</li>
-                <li>🎉 Decoracion Tematica</li>
-                <li>🍾 Servicio VIP disponible</li>
-            </ul>
-            <p class="highlight">💀 ¡Vive la noche más terrorífica del año!</p>
+    <!-- Modal de bienvenida -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <h2>⚠️ ADVERTENCIA ⚠️</h2>
+            <p style="font-size: 1.5rem; color: #ffffff; margin: 20px 0;">
+                Esta experiencia incluye efectos de sonido aterradores.<br>
+                ¿Estás listo para entrar?
+            </p>
+            <button class="enter-button" onclick="enterSite()">ENTRAR AL INFIERNO 😈</button>
         </div>
     </div>
+
+    <!-- Efectos de fondo -->
+    <div class="glitch-bg"></div>
+    <div class="neon-circle circle-1"></div>
+    <div class="neon-circle circle-2"></div>
+
+    <!-- Control de sonido -->
+    <div class="sound-control" onclick="toggleSound()" id="soundBtn">
+        🔊 SONIDO ON
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="main-title">Halloween Night</h1>
+            <div class="hero-image">
+                <img src="https://i.pinimg.com/1200x/76/08/82/760882b19883c0e2dc0a8de299366480.jpg" alt="Imagen de Halloween">
+            </div>
+            <h2 class="beats-title">THE REAL CHOW</h2>
+            <div class="subtitle">MUSIC PARTY</div>
+            <div class="date-info">
+                <h3>31 DE OCTUBRE • 10:00 PM</h3>
+                <p style="color: #ffffff; font-size: 1.5rem; margin-top: 10px;">
+                    LOCAL: RUNY RAYMI<br>
+                    AV. TITICACA 157 - PARQUE ROJO PUNO
+                </p>
+            </div>
+        </header>
+
+        <!-- NUEVA SECCIÓN: DJ JHOAN -->
+        <div class="dj-section">
+            <h2 class="dj-title">🎧 DJ ESPECIAL INVITADO 🎧</h2>
+            <div class="dj-content">
+                <div class="dj-image">
+                    <img src="https://i.pinimg.com/736x/9b/2b/4c/9b2b4c5d1b9d5e5a5e5a5e5a5e5a5e5a.jpg" alt="DJ Jhoan">
+                </div>
+                <div class="dj-info">
+                    <div class="dj-name">DJ JHOAN</div>
+                    <div class="dj-tag">DIRECTO DESDE LA DOMINO</div>
+                    <div class="dj-desc">
+                        El DJ más solicitado de la escena nocturna llega a Halloween Night para poner a bailar a todos con sus mezclas únicas y energía contagiosa. Prepárate para una experiencia musical inolvidable con los mejores beats y remixes exclusivos.
+                    </div>
+                    <div style="font-size: 1.5rem; color: #00ffff; margin-top: 20px;">
+                        🎶 SET EXCLUSIVO DE HALLOWEEN 🎶
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE UBICACIÓN -->
+        <div class="location-section">
+            <h2 class="location-title">📍 UBICACIÓN DEL EVENTO</h2>
+            <p style="font-size: 1.5rem; color: #ffffff; margin: 20px 0;">
+                No te pierdas la fiesta más terrorífica del año
+            </p>
+            <a href="https://maps.app.goo.gl/vFE71KinM2xn4jmd8" target="_blank" class="location-button">
+                📍 VER EN GOOGLE MAPS
+            </a>
+        </div>
+
+        <!-- NUEVA SECCIÓN: OFERTAS DE COMBOS -->
+        <div class="offers-section">
+            <h2 class="offers-title">🔥 SUPER COMBOS 🔥</h2>
+            <div class="offers-grid">
+                <!-- Zona General -->
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO 1</div>
+                        <div class="offer-price">S/ 100</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS + RON
+                        <div class="zone-badge">ZONA GENERAL</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO 2</div>
+                        <div class="offer-price">S/ 80</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS + RUSSKAYA NEUTRO
+                        <div class="zone-badge">ZONA GENERAL</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO 3</div>
+                        <div class="offer-price">S/ 90</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS + RUSSKAYA (SABORES)
+                        <div class="zone-badge">ZONA GENERAL</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO 4</div>
+                        <div class="offer-price">S/ 120</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS + MEDELLÍN
+                        <div class="zone-badge">ZONA GENERAL</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO 5</div>
+                        <div class="offer-price">S/ 170</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS + JAGUER
+                        <div class="zone-badge">ZONA GENERAL</div>
+                    </div>
+                </div>
+                
+                <!-- Zona VIP -->
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO VIP 1</div>
+                        <div class="offer-price">S/ 120</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS VIP + RON
+                        <div class="zone-badge" style="background: linear-gradient(135deg, #ffcc00, #ff9900);">ZONA VIP</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO VIP 2</div>
+                        <div class="offer-price">S/ 100</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS VIP + RUSSKAYA NEUTRO
+                        <div class="zone-badge" style="background: linear-gradient(135deg, #ffcc00, #ff9900);">ZONA VIP</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO VIP 3</div>
+                        <div class="offer-price">S/ 110</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS VIP + RUSSKAYA (SABORES)
+                        <div class="zone-badge" style="background: linear-gradient(135deg, #ffcc00, #ff9900);">ZONA VIP</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO VIP 4</div>
+                        <div class="offer-price">S/ 140</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS VIP + MEDELLÍN
+                        <div class="zone-badge" style="background: linear-gradient(135deg, #ffcc00, #ff9900);">ZONA VIP</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-name">COMBO VIP 5</div>
+                        <div class="offer-price">S/ 190</div>
+                    </div>
+                    <div class="offer-details">
+                        5 ENTRADAS VIP + JAGUER
+                        <div class="zone-badge" style="background: linear-gradient(135deg, #ffcc00, #ff9900);">ZONA VIP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Bebidas -->
+            <div class="section">
+                <h2 class="section-title">🍸 DRINKS ESPECIALES</h2>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="badge">🔥 2x1</div>
+                        <div class="item-title">Neón Azul</div>
+                        <div class="item-desc">Vodka blue curaçao con efecto luminiscente</div>
+                    </div>
+                    <div class="price">
+                        S/ 25
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Neón Azul" class="drink-image">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="badge">💎 VIP</div>
+                        <div class="item-title">Cyborg Shot</div>
+                        <div class="item-desc">Tequila, licor de café y hielo seco</div>
+                    </div>
+                    <div class="price">
+                        S/ 30
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Cyborg Shot" class="drink-image">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">Electric Kiss</div>
+                        <div class="item-desc">Gin, lima y jarabe eléctrico azul</div>
+                    </div>
+                    <div class="price">
+                        S/ 22
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25856cd63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Electric Kiss" class="drink-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concursos -->
+            <div class="section">
+                <h2 class="section-title">🏆 CONCURSOS</h2>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">👩‍🎤 Mejor Disfraz</div>
+                        <div class="item-desc">Premio al más aterrador de la noche</div>
+                    </div>
+                    <div class="price">SELLADA FLOR DE CAÑA 18 AÑOS</div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">💀 Grupo Terror</div>
+                        <div class="item-desc">Disfraces coordinados más macabros</div>
+                    </div>
+                    <div class="price">SELLADA JAGER</div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">🎭 Makeup FX</div>
+                        <div class="item-desc">Maquillaje más realista y sangriento</div>
+                    </div>
+                    <div class="price">SELLADA RON BLACK</div>
+                </div>
+            </div>
+
+            <!-- Atracciones -->
+            <div class="section">
+                <h2 class="section-title">⚡ ATRACCIONES</h2>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">🎵 DJ JHOAN</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">💡 Show de Luces</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">📸 Photo Zone</div>
+                        <div class="item-desc">Set de fotos </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="section">
+                <h2 class="section-title">📍 INFORMACIÓN</h2>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">🎟️ Entrada</div>
+                        <div class="item-desc">
+                            <strong>Preventa:</strong> S/ 7<br>
+                            <strong>Puerta:</strong> S/ 10
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">⏰ Horario</div>
+                        <div class="item-desc">8:00 PM - 5:00 AM</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">👗 Dress Code</div>
+                        <div class="item-desc">¡DISFRAZ OBLIGATORIO! Neón y terror</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <div class="item-title">🔞 Edad</div>
+                        <div class="item-desc">+18 años con DNI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVA SECCIÓN: ANFITRIONAS MEJORADA -->
+        <div class="hostess-section-improved">
+            <h2 class="hostess-title">👯‍♀️ NUESTRAS ANFITRIONAS 👯‍♀️</h2>
+            <p style="text-align: center; color: #ffffff; font-size: 1.3rem; margin-bottom: 20px;">
+                Las chicas más HOT te esperan para hacerte pasar la mejor noche de terror 
+            </p>
+            <div class="hostess-grid">
+                <div class="hostess-card">
+                    <div class="hostess-image">
+                        <img src="https://i.pinimg.com/736x/e6/33/13/e63313f060c39dab7626ad7604deebeb.jpg" alt="Anfitriona Luz" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="hostess-info">
+                        <div class="hostess-name">LUZ</div>
+                        <div class="hostess-desc">La más atrevida del grupo, siempre lista para tu diversión.</div>
+                    </div>
+                </div>
+                <div class="hostess-card">
+                    <div class="hostess-image">
+                        <img src="https://i.pinimg.com/1200x/cc/43/6f/cc436fadd1ba6ea5201aafd1a4e9c9ea.jpg" alt="Anfitriona Mia" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="hostess-info">
+                        <div class="hostess-name">GABRIELITA</div>
+                        <div class="hostess-desc">Encantadora y seductora, hará que no quieras irte.</div>
+                    </div>
+            </div>
+            <p style="text-align: center; color: #00ffff; font-size: 1.2rem; margin-top: 20px;">
+                💃  • LUZ • GABRIELITA • 💃
+            </p>
+        </div>
+
+        <!-- NUEVA SECCIÓN: SEGURIDAD GARANTIZADA -->
+        <div class="security-section">
+            <h2 class="security-title">🛡️ SEGURIDAD GARANTIZADA 🛡️</h2>
+            <p style="font-size: 1.5rem; color: #ffffff; margin: 20px 0;">
+                Tu seguridad es nuestra prioridad. Disfruta sin preocupaciones
+            </p>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">👮‍♂️</div>
+                    <div class="security-item-title">Personal de Seguridad</div>
+                    <div class="security-item-desc">Equipo profesional capacitado disponible durante todo el evento</div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🚨</div>
+                    <div class="security-item-title">Sistema de Emergencia</div>
+                    <div class="security-item-desc">Protocolos establecidos para cualquier eventualidad</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <h2 class="warning-title">⚠️ ADVERTENCIA ⚠️</h2>
+            <p style="font-size: 1.8rem; color: #ffffff; margin: 20px 0;">
+                Esta no es una fiesta para los débiles de corazón.<br>
+                Prepárate para una noche de TERROR y DIVERSIÓN sin límites.
+            </p>
+            <p style="font-size: 2.2rem; color: #00ffff; text-shadow: 0 0 20px #00ffff; margin-top: 20px;">
+                ¿TE ATREVES A DIVERTIRTE? 
+            </p>
+        </div>
+
+        <div class="cta">
+            <a href="https://chat.whatsapp.com/IlF661JHiGFHh6dK3q6tke?mode=ems_wa_t" class="cta-button">🎟️ COMPRAR ENTRADA 🎟️</a>
+            <p style="margin-top: 25px; color: #00ffff; font-size: 1.5rem; text-shadow: 0 0 15px #00ffff;">
+                ⏳ Cupos limitados - ¡Asegura tu entrada!
+            </p>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.5rem; margin-bottom: 15px;">
+                ⚡ HALLOWEEN NIGHT - BEATS MUSIC PARTY 2025 ⚡
+            </p>
+            <p style="font-size: 1.2rem;">
+                📱 WhatsApp: 923-353-880 | 📧 Party@halloweenbeats.com
+            </p>
+            <p style="margin-top: 15px; font-size: 1rem; color: #a0d8ff;">
+                #HalloweenBeats #PunoNight #Halloween2025
+            </p>
+        </footer>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="screamSound" preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d1718ab41b.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="backgroundMusic" loop preload="auto">
+        <!-- Reemplazado con una fuente de audio más confiable -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Crear rayos realistas y efectos de fondo
-        function createParticles() {
-            const container = document.getElementById('bgAnimation');
+        let soundEnabled = false;
+        let backgroundMusic = document.getElementById('backgroundMusic');
+        let screamSound = document.getElementById('screamSound');
 
-            // Rayos SVG ultra realistas con ramificaciones
-            const realisticLightningPaths = [
-                // Rayo principal con ramificaciones
-                {
-                    main: 'M50,0 L48,15 L52,15 L49,28 L54,28 L51,42 L47,42 L44,58 L49,58 L46,72 L42,72 L38,90 L43,90 L40,100',
-                    branches: [
-                        'M49,28 L55,32 L58,38',
-                        'M44,58 L38,62 L35,68',
-                        'M46,72 L50,76 L52,82'
-                    ]
-                },
-                {
-                    main: 'M50,0 L52,12 L47,12 L50,25 L45,25 L48,40 L53,40 L50,55 L46,55 L48,68 L52,68 L49,82 L45,82 L47,100',
-                    branches: [
-                        'M50,25 L44,30 L40,36',
-                        'M48,40 L54,44 L57,50',
-                        'M49,82 L54,86 L56,92'
-                    ]
-                },
-                {
-                    main: 'M50,0 L46,18 L51,18 L48,32 L52,32 L49,48 L54,48 L51,62 L47,62 L49,75 L44,75 L46,88 L50,88 L48,100',
-                    branches: [
-                        'M48,32 L42,36 L38,42',
-                        'M51,62 L56,66 L59,72',
-                        'M44,75 L40,79 L37,85'
-                    ]
-                },
-                {
-                    main: 'M50,0 L53,14 L48,14 L51,28 L47,28 L49,44 L45,44 L47,58 L52,58 L50,72 L54,72 L52,86 L48,86 L50,100',
-                    branches: [
-                        'M51,28 L56,32 L59,38',
-                        'M47,58 L42,62 L39,68',
-                        'M52,86 L56,90 L58,96'
-                    ]
-                },
-                {
-                    main: 'M50,0 L47,16 L52,16 L49,30 L54,30 L51,46 L48,46 L50,60 L45,60 L47,74 L51,74 L49,88 L53,88 L51,100',
-                    branches: [
-                        'M49,30 L44,34 L41,40',
-                        'M50,60 L55,64 L58,70',
-                        'M49,88 L44,92 L41,98'
-                    ]
-                }
-            ];
+        function enterSite() {
+            document.getElementById('welcomeModal').style.display = 'none';
+            
+            // Reproducir grito de terror
+            screamSound.volume = 0.7;
+            screamSound.play().catch(e => console.log('Audio bloqueado por el navegador'));
+            
+            // Iniciar música de fondo después del grito
+            setTimeout(() => {
+                backgroundMusic.volume = 0.3;
+                backgroundMusic.play().catch(e => console.log('Audio bloqueado por el navegador'));
+                soundEnabled = true;
+            }, 2000);
+        }
 
-            // Crear 10 rayos realistas con ramificaciones
-            for (let i = 0; i < 10; i++) {
-                const lightningData = realisticLightningPaths[Math.floor(Math.random() * realisticLightningPaths.length)];
-                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svg.setAttribute('class', 'lightning-svg');
-                svg.setAttribute('viewBox', '0 0 100 100');
-                svg.setAttribute('width', '120');
-                svg.setAttribute('height', Math.random() * 250 + 350);
-                
-                // Crear grupo para todos los elementos del rayo
-                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                
-                // Capa de resplandor externo (blur)
-                const glowPathOuter = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                glowPathOuter.setAttribute('d', lightningData.main);
-                glowPathOuter.setAttribute('stroke', 'rgba(150, 220, 255, 0.6)');
-                glowPathOuter.setAttribute('stroke-width', '8');
-                glowPathOuter.setAttribute('fill', 'none');
-                glowPathOuter.setAttribute('stroke-linecap', 'round');
-                glowPathOuter.setAttribute('stroke-linejoin', 'round');
-                glowPathOuter.setAttribute('filter', 'blur(4px)');
-                g.appendChild(glowPathOuter);
-                
-                // Rayo principal - capa azul
-                const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                mainPath.setAttribute('d', lightningData.main);
-                mainPath.setAttribute('stroke', `rgba(${120 + Math.random() * 100}, ${220 + Math.random() * 35}, 255, 0.95)`);
-                mainPath.setAttribute('stroke-width', '3.5');
-                mainPath.setAttribute('fill', 'none');
-                mainPath.setAttribute('stroke-linecap', 'round');
-                mainPath.setAttribute('stroke-linejoin', 'round');
-                g.appendChild(mainPath);
-                
-                // Rayo principal - núcleo blanco brillante
-                const corePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                corePath.setAttribute('d', lightningData.main);
-                corePath.setAttribute('stroke', 'rgba(255, 255, 255, 0.9)');
-                corePath.setAttribute('stroke-width', '1.2');
-                corePath.setAttribute('fill', 'none');
-                corePath.setAttribute('stroke-linecap', 'round');
-                corePath.setAttribute('stroke-linejoin', 'round');
-                g.appendChild(corePath);
-                
-                // Agregar ramificaciones
-                lightningData.branches.forEach(branchPath => {
-                    // Resplandor de rama
-                    const branchGlow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    branchGlow.setAttribute('d', branchPath);
-                    branchGlow.setAttribute('stroke', 'rgba(150, 220, 255, 0.5)');
-                    branchGlow.setAttribute('stroke-width', '6');
-                    branchGlow.setAttribute('fill', 'none');
-                    branchGlow.setAttribute('stroke-linecap', 'round');
-                    branchGlow.setAttribute('filter', 'blur(3px)');
-                    g.appendChild(branchGlow);
-                    
-                    // Rama azul
-                    const branch = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    branch.setAttribute('d', branchPath);
-                    branch.setAttribute('stroke', `rgba(${140 + Math.random() * 80}, ${210 + Math.random() * 45}, 255, 0.9)`);
-                    branch.setAttribute('stroke-width', '2.5');
-                    branch.setAttribute('fill', 'none');
-                    branch.setAttribute('stroke-linecap', 'round');
-                    g.appendChild(branch);
-                    
-                    // Núcleo blanco de rama
-                    const branchCore = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    branchCore.setAttribute('d', branchPath);
-                    branchCore.setAttribute('stroke', 'rgba(255, 255, 255, 0.85)');
-                    branchCore.setAttribute('stroke-width', '0.8');
-                    branchCore.setAttribute('fill', 'none');
-                    branchCore.setAttribute('stroke-linecap', 'round');
-                    g.appendChild(branchCore);
-                });
-                
-                svg.appendChild(g);
-                
-                // Posicionar aleatoriamente
-                svg.style.left = Math.random() * 100 + '%';
-                svg.style.top = Math.random() * 60 + '%';
-                svg.style.animationDelay = Math.random() * 10 + 's';
-                svg.style.animationDuration = (10 + Math.random() * 5) + 's';
-                
-                container.appendChild(svg);
-            }
-
-            const particleCount = 15;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + 'vh';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-
-            // Crear murciélagos
-            for (let i = 0; i < 5; i++) {
-                const bat = document.createElement('div');
-                bat.className = 'bat';
-                bat.style.top = Math.random() * 80 + '%';
-                bat.style.animationDelay = Math.random() * 20 + 's';
-                bat.style.animationDuration = (20 + Math.random() * 10) + 's';
-                container.appendChild(bat);
+        function toggleSound() {
+            const btn = document.getElementById('soundBtn');
+            if (soundEnabled) {
+                backgroundMusic.pause();
+                btn.textContent = '🔇 SONIDO OFF';
+                soundEnabled = false;
+            } else {
+                backgroundMusic.play().catch(e => console.log('Audio bloqueado'));
+                btn.textContent = '🔊 SONIDO ON';
+                soundEnabled = true;
             }
         }
 
-        // Inicializar efectos al cargar la página
-        window.addEventListener('load', createParticles);
+        // Gritos aleatorios mientras navegas
+        setInterval(() => {
+            if (soundEnabled && Math.random() > 0.95) {
+                let randomScream = screamSound.cloneNode();
+                randomScream.volume = 0.4;
+                randomScream.play().catch(e => {});
+            }
+        }, 5000);
+
+        // Efecto de cursor neón
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.98) {
+                const spark = document.createElement('div');
+                spark.style.position = 'fixed';
+                spark.style.left = e.clientX + 'px';
+                spark.style.top = e.clientY + 'px';
+                spark.style.width = '4px';
+                spark.style.height = '4px';
+                spark.style.background = '#00ffff';
+                spark.style.borderRadius = '50%';
+                spark.style.boxShadow = '0 0 10px #00ffff';
+                spark.style.pointerEvents = 'none';
+                spark.style.zIndex = '9999';
+                spark.style.animation = 'sparkFade 1s forwards';
+                document.body.appendChild(spark);
+                
+                setTimeout(() => spark.remove(), 1000);
+            }
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkFade {
+                to {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Efecto de parpadeo aleatorio en la página
+        setInterval(() => {
+            if (Math.random() > 0.97) {
+                document.body.style.filter = 'brightness(1.5) hue-rotate(180deg)';
+                setTimeout(() => {
+                    document.body.style.filter = 'brightness(1)';
+                }, 100);
+            }
+        }, 3000);
     </script>
 </body>
 </html>
