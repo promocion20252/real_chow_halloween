@@ -877,6 +877,159 @@
             animation: badge-pulse 2s infinite;
         }
 
+        /* NUEVA SECCIÓN: CONCURSOS SEPARADA */
+        .contests-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.7), rgba(0,20,40,0.9));
+            border: 3px solid #ffcc00;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(255,204,0,0.6);
+        }
+
+        .contests-title {
+            font-size: 3rem;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #ffcc00;
+        }
+
+        .contests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .contest-card {
+            background: linear-gradient(135deg, rgba(0,30,60,0.8), rgba(0,10,20,0.9));
+            border: 2px solid #ffcc00;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contest-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255,204,0,0.6);
+            border-color: #ff0066;
+        }
+
+        .contest-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,204,0,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .contest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contest-name {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .contest-prize {
+            font-size: 1.5rem;
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00ff00;
+        }
+
+        .contest-details {
+            color: #a0d8ff;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* NUEVA SECCIÓN: INFORMACIÓN MEJORADA */
+        .info-section {
+            background: linear-gradient(135deg, rgba(0,50,100,0.7), rgba(0,20,40,0.9));
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+        }
+
+        .info-title {
+            font-size: 3rem;
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #00ffff;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(0,30,60,0.8), rgba(0,10,20,0.9));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,255,255,0.6);
+            border-color: #ff0066;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .info-name {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .info-details {
+            color: #a0d8ff;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
             .main-title { font-size: 3rem; }
             .beats-title { font-size: 4rem; letter-spacing: 8px; }
@@ -890,6 +1043,8 @@
             .dj-title { font-size: 2.5rem; }
             .dj-image { width: 250px; height: 250px; }
             .dj-name { font-size: 2rem; }
+            .contests-title { font-size: 2.5rem; }
+            .info-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -899,7 +1054,7 @@
         <div class="welcome-content">
             <h2>⚠️ ADVERTENCIA ⚠️</h2>
             <p style="font-size: 1.5rem; color: #ffffff; margin: 20px 0;">
-                Esta experiencia incluye efectos de sonido aterradores.<br>
+                Esta experiencia incluye diversión sin limites.<br>
                 ¿Estás listo para entrar?
             </p>
             <button class="enter-button" onclick="enterSite()">ENTRAR AL INFIERNO 😈</button>
@@ -1120,32 +1275,6 @@
                 </div>
             </div>
 
-            <!-- Concursos -->
-            <div class="section">
-                <h2 class="section-title">🏆 CONCURSOS</h2>
-                <div class="item">
-                    <div class="item-content">
-                        <div class="item-title">👩‍🎤 Mejor Disfraz</div>
-                        <div class="item-desc">Premio al más aterrador de la noche</div>
-                    </div>
-                    <div class="price">SELLADA FLOR DE CAÑA 18 AÑOS</div>
-                </div>
-                <div class="item">
-                    <div class="item-content">
-                        <div class="item-title">💀 Grupo Terror</div>
-                        <div class="item-desc">Disfraces coordinados más macabros</div>
-                    </div>
-                    <div class="price">SELLADA JAGER</div>
-                </div>
-                <div class="item">
-                    <div class="item-content">
-                        <div class="item-title">🎭 Makeup FX</div>
-                        <div class="item-desc">Maquillaje más realista y sangriento</div>
-                    </div>
-                    <div class="price">SELLADA RON BLACK</div>
-                </div>
-            </div>
-
             <!-- Atracciones -->
             <div class="section">
                 <h2 class="section-title">⚡ ATRACCIONES</h2>
@@ -1167,7 +1296,7 @@
                 </div>
             </div>
 
-            <!-- Info -->
+            <!-- NUEVA SECCIÓN: INFORMACIÓN MEJORADA -->
             <div class="section">
                 <h2 class="section-title">📍 INFORMACIÓN</h2>
                 <div class="item">
@@ -1188,7 +1317,7 @@
                 <div class="item">
                     <div class="item-content">
                         <div class="item-title">👗 Dress Code</div>
-                        <div class="item-desc">¡DISFRAZ OBLIGATORIO! Neón y terror</div>
+                        <div class="item-desc">¡DISFRAZ OBLIGATORIO!</div>
                     </div>
                 </div>
                 <div class="item">
@@ -1224,10 +1353,111 @@
                         <div class="hostess-name">GABRIELITA</div>
                         <div class="hostess-desc">Encantadora y seductora, hará que no quieras irte.</div>
                     </div>
+                </div>
             </div>
             <p style="text-align: center; color: #00ffff; font-size: 1.2rem; margin-top: 20px;">
                 💃  • LUZ • GABRIELITA • 💃
             </p>
+        </div>
+
+        <!-- NUEVA SECCIÓN: CONCURSOS SEPARADA -->
+        <div class="contests-section">
+            <h2 class="contests-title">🏆 CONCURSOS Y PREMIOS 🏆</h2>
+            <p style="text-align: center; color: #ffffff; font-size: 1.3rem; margin-bottom: 20px;">
+                Participa y gana increíbles premios en nuestros concursos de Halloween
+            </p>
+            <div class="contests-grid">
+                <div class="contest-card">
+                    <div class="contest-header">
+                        <div class="contest-name">👩‍🎤 Mejor Disfraz</div>
+                        <div class="contest-prize">FLOR DE CAÑA 18 AÑOS</div>
+                    </div>
+                    <div class="contest-details">
+                        Premio al disfraz más aterrador y creativo de la noche. ¡Demuestra tu talento y creatividad!
+                    </div>
+                </div>
+                <div class="contest-card">
+                    <div class="contest-header">
+                        <div class="contest-name">💀 Grupo Terror</div>
+                        <div class="contest-prize">SELLADA JAGER</div>
+                    </div>
+                    <div class="contest-details">
+                        Disfraces coordinados más macabros y terroríficos. ¡Trae a tus amigos y ganen juntos!
+                    </div>
+                </div>
+                <div class="contest-card">
+                    <div class="contest-header">
+                        <div class="contest-name">🎭 Makeup FX</div>
+                        <div class="contest-prize">RON BLACK</div>
+                    </div>
+                    <div class="contest-details">
+                        Maquillaje más realista y sangriento. ¡Sorpréndenos con tus habilidades de maquillaje!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVA SECCIÓN: INFORMACIÓN MEJORADA -->
+        <div class="info-section">
+            <h2 class="info-title">ℹ️ INFORMACIÓN GENERAL ℹ️</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">🎟️</div>
+                        <div class="info-name">ENTRADAS</div>
+                    </div>
+                    <div class="info-details">
+                        <strong>Preventa:</strong> S/ 7<br>
+                        <strong>Puerta:</strong> S/ 10<br>
+                        <strong>Compra:</strong> WhatsApp o en puerta
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-name">HORARIO</div>
+                    </div>
+                    <div class="info-details">
+                        <strong>Inicio:</strong> 8:00 PM<br>
+                        <strong>Fin:</strong> 5:00 AM<br>
+                        
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">👗</div>
+                        <div class="info-name">DRESS CODE</div>
+                    </div>
+                    <div class="info-details">
+                        <strong>¡DISFRAZ OBLIGATORIO!</strong><br>
+                     
+                        Premios a los mejores disfraces
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">🔞</div>
+                        <div class="info-name">EDAD Y DOCUMENTOS</div>
+                    </div>
+                    <div class="info-details">
+                        <strong>+18 años</strong><br>
+                        <strong>DNI obligatorio</strong><br>
+                       
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">📍</div>
+                        <div class="info-name">UBICACIÓN</div>
+                    </div>
+                    <div class="info-details">
+                        <strong>Local:</strong> RUNY RAYMI<br>
+                        <strong>Dirección:</strong> AV. TITICACA 157<br>
+                        <strong>Zona:</strong> PARQUE ROJO PUNO
+                    </div>
+                </div>
+    
+            </div>
         </div>
 
         <!-- NUEVA SECCIÓN: SEGURIDAD GARANTIZADA -->
@@ -1251,7 +1481,7 @@
         </div>
 
         <div class="warning">
-            <h2 class="warning-title">⚠️ ADVERTENCIA ⚠️</h2>
+            <h2 class="warning-title">⚠️</h2>
             <p style="font-size: 1.8rem; color: #ffffff; margin: 20px 0;">
                 Esta no es una fiesta para los débiles de corazón.<br>
                 Prepárate para una noche de TERROR y DIVERSIÓN sin límites.
